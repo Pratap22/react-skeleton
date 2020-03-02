@@ -1,26 +1,53 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Provider } from "react-redux";
+import store from "./redux/store";
+import {
+  ThemeProvider as MuiThemeProvider,
+  CssBaseline
+} from "@material-ui/core";
+import { IntlProvider } from "react-intl";
+import { MuiPickersUtilsProvider } from "@material-ui/pickers";
+import { ThemeProvider } from "styled-components";
+import MomentUtils from "@date-io/moment";
+import { SnackbarProvider } from "notistack";
+import config, {
+  getCurrentLanguage
+} from "./containers/languageSwitcher/config";
+import themes from "config/themes/materialTheme";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const currentAppLocale =
+  AppLocale[getCurrentLanguage(config.defaultLanguage || "english").locale];
+const theme = themes["defaultTheme"];
+
+const App = () => (
+  <IntlProvider
+    locale={currentAppLocale.locale}
+    messages={currentAppLocale.messages}
+  >
+    <>
+      <MuiThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}>
+          <MuiPickersUtilsProvider utils={MomentUtils}>
+            <CssBaseline />
+            <Provider store={store}>
+              <SnackbarProvider
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right"
+                }}
+                maxSnack={2}
+              >
+                <div>Adinav</div>
+              </SnackbarProvider>
+            </Provider>
+          </MuiPickersUtilsProvider>
+        </ThemeProvider>
+      </MuiThemeProvider>
+      <TknGlobalStyle />
+      <AppGlobalStyle />
+    </>
+  </IntlProvider>
+);
 
 export default App;
+export { AppLocale };
