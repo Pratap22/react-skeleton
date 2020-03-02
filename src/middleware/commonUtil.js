@@ -1,6 +1,5 @@
 import React from "react"
 import { ViewTypes } from "./sharedConstants"
-import Hashids from "hashids"
 
 export default class CommonUtil {
   static formUrl(baseUrl, params) {
@@ -147,11 +146,6 @@ export default class CommonUtil {
       if (obj.hasOwnProperty(key)) return false
     }
     return true
-  }
-
-  static getUniqueId = () => {
-    const hashids = new Hashids("Bookers Web App", 6)
-    return hashids.encode(Date.now()).toUpperCase()
   }
 
   /* Is required validation function for formik field */

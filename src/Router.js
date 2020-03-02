@@ -1,10 +1,13 @@
-import React from "react";
-import { Router, Redirect } from "@reach/router";
-import { useSelector } from "react-redux";
+import React from "react"
+import { Router, Redirect } from "@reach/router"
+import { RoutesString as Paths } from "./helpers/routeConstants"
+import { useSelector } from "react-redux"
 import {
   Minimal as MinimalLayout,
-  Main as MainLayout
-} from "containers/layouts";
+  Main as MainLayout,
+} from "containers/layouts"
+import Home from "containers/home/Home"
+import Login from "containers/auth/Login"
 
 const RestrictedRoute = ({
   component: Component,
@@ -15,21 +18,17 @@ const RestrictedRoute = ({
   return isLoggedIn ? (
     <Component {...rest} />
   ) : (
-    <Redirect
-      to={SharedRouteConstants.LOGIN}
-      state={{ from: location.pathname }}
-      noThrow
-    />
-  );
-};
+    <Redirect to={Paths.login} state={{ from: location.pathname }} noThrow />
+  )
+}
 
 export const OpenRoute = ({ component: Component, ...rest }) => {
   return (
     <MinimalLayout>
       <Component {...rest} />
     </MinimalLayout>
-  );
-};
+  )
+}
 
 const PublicRoutes = () => {
   // const isLoggedIn = useSelector(state => getIsLoggedIn(state))
@@ -38,19 +37,16 @@ const PublicRoutes = () => {
       <RestrictedRoute
         path={Paths.app}
         component={MainLayout}
-        isLoggedIn={isLoggedIn}
+        isLoggedIn={true}
       >
-        <GuideDetail path={`${Paths.guideDetail}/:userId`} />
+        <Home path={Paths.home} />
       </RestrictedRoute>
       {/* <OpenRoute
         component={PartnerLoginPage}
         path={SharedRouteConstants.HOME}
-      />
-      <OpenRoute
-        component={PartnerLoginPage}
-        path={SharedRouteConstants.LOGIN}
-      />
-      <OpenRoute
+      /> */}
+      <OpenRoute component={Login} path={Paths.login} />
+      {/* <OpenRoute
         component={PartnerForgotPasswordPage}
         path={SharedRouteConstants.FORGOT_PASSWORD}
       />
@@ -63,7 +59,7 @@ const PublicRoutes = () => {
         path={SharedRouteConstants.VERIFY}
       /> */}
     </Router>
-  );
-};
+  )
+}
 
-export default PublicRoutes;
+export default PublicRoutes

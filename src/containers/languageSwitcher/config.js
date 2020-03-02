@@ -1,7 +1,6 @@
-import { language } from "../../config.js";
+import { language } from "../../config.js"
 
-import englishLang from "images/flag/uk.svg";
-import chineseLang from "images/flag/china.svg";
+import englishLang from "images/flag/uk.svg"
 
 const config = {
   defaultLanguage: language,
@@ -10,24 +9,18 @@ const config = {
       languageId: "english",
       locale: "en",
       text: "English",
-      icon: englishLang
+      icon: englishLang,
     },
-    {
-      languageId: "chinese",
-      locale: "zh",
-      text: "Chinese",
-      icon: chineseLang
-    }
-  ]
-};
+  ],
+}
 
 export function getCurrentLanguage(lang) {
-  let selecetedLanguage = config.options[0];
+  let selecetedLanguage = config.options[0]
   config.options.forEach(language => {
     if (language.languageId === lang) {
-      selecetedLanguage = language;
+      selecetedLanguage = language
     }
-  });
-  return selecetedLanguage;
+  })
+  return selecetedLanguage
 }
-export default config;
+export default config

@@ -1,0 +1,22 @@
+{
+  "signIn.loginTitle": "Login",
+  "signIn.registerTitle": "Register",
+  "firstName.required": "First Name is required",
+  "topbar.profile": "My Profile",
+  "topbar.logout": "Logout",
+  "addbusiness.header": "Add New Business",
+  "addbusiness.desc": "Business helps you in oragnising all your products, inventory and orders",
+  "sidebar.dashboard": "Dashboard",
+  "sidebar.entity": "Entity",
+  "sidebar.partnerMember": "Project Coordinator",
+  "sidebar.project": "Project",
+  "sidebar.campaign": "Campaign",
+  "sidebar.writers": "Content Creator",
+  "sidebar.client": "Clients",
+  "sidebar.metadata": "Web Meta",
+  "sidebar.slideShowData": "Slide-show Data",
+  "sidebar.guide": "Set-up Guide",
+  "sidebar.guideExchange": "Exchange",
+  "sidebar.guides": "Guide List",
+  "sidebar.services": "Services"
+}
